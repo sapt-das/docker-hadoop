@@ -1,19 +1,12 @@
 DOCKER_NETWORK = hadoop
 ENV_FILE = ./hadoop.env
+current_branch := $(shell git rev-parse --abbrev-ref HEAD)
 
-wordcount:
-	docker build -t hadoop-wordcount ./submit
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:1.2.1-hadoop2.8-java8 hdfs dfs -mkdir -p /input/
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:1.2.1-hadoop2.8-java8 hdfs dfs -copyFromLocal /opt/hadoop-2.8.0/README.txt /input/
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} hadoop-wordcount
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:1.2.1-hadoop2.8-java8 hdfs dfs -cat /output/*
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:1.2.1-hadoop2.8-java8 hdfs dfs -rm -r /output
-	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:1.2.1-hadoop2.8-java8 hdfs dfs -rm -r /input
 
 build-local:
-	docker build -t bde2020/hadoop-base:1.2.1-hadoop2.8-java8 ./base
-	docker build -t bde2020/hadoop-namenode:1.2.1-hadoop2.8-java8 ./namenode
-	docker build -t bde2020/hadoop-datanode:1.2.1-hadoop2.8-java8 ./datanode
-	docker build -t bde2020/hadoop-nodemanager:1.2.1-hadoop2.8-java8 ./nodemanager
-	docker build -t bde2020/hadoop-resourcemanager:1.2.1-hadoop2.8-java8 ./resourcemanager
-	docker build -t bde2020/hadoop-historyserver:1.2.1-hadoop2.8-java8 ./historyserver
+	docker build --platform linux/amd64 -t sapdas/hadoop-base:$(current_branch) ./base
+	docker build --platform linux/amd64 -t sapdas/hadoop-namenode:$(current_branch) ./namenode
+	docker build --platform linux/amd64 -t sapdas/hadoop-datanode:$(current_branch) ./datanode
+	docker build --platform linux/amd64 -t sapdas/hadoop-nodemanager:$(current_branch) ./nodemanager
+	docker build --platform linux/amd64 -t sapdas/hadoop-resourcemanager:$(current_branch) ./resourcemanager
+	docker build --platform linux/amd64 -t sapdas/hadoop-historyserver:$(current_branch) ./historyserver

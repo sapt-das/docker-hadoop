@@ -1,4 +1,4 @@
-version: "2"
+version: '3.7'
 
 services:
   #######
@@ -79,4 +79,4 @@ services:
 
 networks:
   hadoop:
-    external: true
+    name: hadoop
