@@ -1,0 +1,11 @@
+alter table test.stocks add partition (stock_id='0') location '/user/hive/warehouse/test.db/stocks/stock_id=0';
+alter table test.stocks add partition (stock_id='1') location '/user/hive/warehouse/test.db/stocks/stock_id=1';
+alter table test.stocks add partition (stock_id='10') location '/user/hive/warehouse/test.db/stocks/stock_id=10';
+alter table test.stocks add partition (stock_id='2') location '/user/hive/warehouse/test.db/stocks/stock_id=2';
+alter table test.stocks add partition (stock_id='3') location '/user/hive/warehouse/test.db/stocks/stock_id=3';
+alter table test.stocks add partition (stock_id='4') location '/user/hive/warehouse/test.db/stocks/stock_id=4';
+alter table test.stocks add partition (stock_id='5') location '/user/hive/warehouse/test.db/stocks/stock_id=5';
+alter table test.stocks add partition (stock_id='6') location '/user/hive/warehouse/test.db/stocks/stock_id=6';
+alter table test.stocks add partition (stock_id='7') location '/user/hive/warehouse/test.db/stocks/stock_id=7';
+alter table test.stocks add partition (stock_id='8') location '/user/hive/warehouse/test.db/stocks/stock_id=8';
+alter table test.stocks add partition (stock_id='9') location '/user/hive/warehouse/test.db/stocks/stock_id=9';
